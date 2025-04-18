@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>First‑Time Tester Pass Rates (3D Surface)</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body { margin: 0; padding: 20px; font-family: sans-serif; }
+    h2 { margin-top: 40px; }
+    .plot { width: 100%; height: 600px; }
+  </style>
+</head>
+<body>
+
+  <h2>2023 First‑Time Pass Rate by Campus & Enrollment Year</h2>
+  <div id="surface-2023" class="plot"></div>
+
+  <h2>2024 First‑Time Pass Rate by Campus & Enrollment Year</h2>
+  <div id="surface-2024" class="plot"></div>
+
+  <script>
+    // --- common campus labels ---
+    var campuses = ['GA','NJ','VA'];
+
+    // --- 2023 data ---
+    var years2023 = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
+    var z2023 = [
+      [  0,    0,    0,    0,  50.00,   0.00,    0.00,  75.00],  // GA
+      [  0,    0,    0,    0,  68.42,  70.37,  100.00,  50.00],  // NJ
+      [  0,  100.0,   0.0,  62.50,  72.00,  82.14,   88.00,   0.00]   // VA
+    ];
+
+    var data2023 = [{
+      x: years2023,
+      y: campuses,
+      z: z2023,
+      type: 'surface',
+      contours: { z: { show:true, usecolormap:true, project:{z:true} } }
+    }];
+
+    var layout2023 = {
+      title: '2023 First‑Time Pass Rate',
+      autosize: true,
+      margin: { l:60, r:30, t:60, b:60 },
+      scene: {
+        xaxis: { title: 'Enrollment Year' },
+        yaxis: { title: 'Campus' },
+        zaxis: { title: 'Pass Rate (%)' },
+        camera: { eye: { x:1.6, y:1.6, z:0.8 } }
+      }
+    };
+
+    Plotly.newPlot('surface-2023', data2023, layout2023, {responsive:true});
+
+    // --- 2024 data ---
+    var years2024 = [2014, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
+    var z2024 = [
+      [   0,    0,    0,     0,     0,     0,  71.43,  66.67],  // GA
+      [   0,    0,   50,  42.86,  53.85, 100.00, 52.63,  33.33],  // NJ
+      [   0, 100.00, 75.00, 66.67,100.00, 78.95, 88.57,   0.00]   // VA
+    ];
+
+    var data2024 = [{
+      x: years2024,
+      y: campuses,
+      z: z2024,
+      type: 'surface',
+      contours: { z: { show:true, usecolormap:true, project:{z:true} } }
+    }];
+
+    var layout2024 = {
+      title: '2024 First‑Time Pass Rate',
+      autosize: true,
+      margin: { l:60, r:30, t:60, b:60 },
+      scene: {
+        xaxis: { title: 'Enrollment Year' },
+        yaxis: { title: 'Campus' },
+        zaxis: { title: 'Pass Rate (%)' },
+        camera: { eye: { x:1.6, y:1.6, z:0.8 } }
+      }
+    };
+
+    Plotly.newPlot('surface-2024', data2024, layout2024, {responsive:true});
+  </script>
+
+</body>
+</html>
